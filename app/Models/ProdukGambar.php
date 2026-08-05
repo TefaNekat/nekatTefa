@@ -9,7 +9,11 @@ class ProdukGambar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['produk_id', 'path_gambar', 'urutan'];
+    protected $fillable = [
+        'produk_id',
+        'path_gambar',
+        'urutan'
+        ];
 
     public function produk()
     {

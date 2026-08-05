@@ -9,7 +9,13 @@ class Lead extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'produk_id', 'jurusan_id', 'status', 'catatan_admin'];
+    protected $fillable = [
+        'user_id',
+        'produk_id',
+        'jurusan_id',
+        'status',
+        'catatan_admin'
+        ];
 
     public function user()
     {
