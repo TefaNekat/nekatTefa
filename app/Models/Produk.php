@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Scopes\JurusanScope; // nanti kita buat
+use App\Models\Scopes\JurusanScope; 
 
 class Produk extends Model
 {
