@@ -1,4 +1,4 @@
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"<?php
+<?php
 
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
