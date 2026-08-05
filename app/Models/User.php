@@ -12,6 +12,11 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    public function leads()
+    {
+        return $this->hasMany(Lead::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
