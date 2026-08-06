@@ -2,30 +2,41 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable; // penting!
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class AdminJurusan extends Authenticatable
 {
-    use HasFactory, HasRoles;
-
-    // Nama tabel (default 'admin_jurusans' sudah sesuai)
-    protected $table = 'admin_jurusans';
+    use Notifiable;
 
     protected $fillable = [
         'jurusan_id',
         'name',
         'email',
         'password',
-        'role'
+        'role',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
         ];
+    }
 
-    protected $hidden = ['password', 'remember_token'];
-
-    // Relasi balik ke Jurusan
-    public function jurusan()
+    public function jurusan(): BelongsTo
     {
         return $this->belongsTo(Jurusan::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super_admin';
     }
 }

@@ -15,8 +15,14 @@ class ProdukGambar extends Model
         'urutan'
         ];
 
-    public function produk()
+    protected static function booted(): void
     {
+        static::addGlobalScope('urutan', function ($query) {
+            $query->orderBy('urutan');
+    });
+}
+
+    public function produk(){
         return $this->belongsTo(Produk::class);
     }
 }

@@ -2,46 +2,44 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Scopes\JurusanScope; 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Produk extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'jurusan_id', 'nama', 'slug', 'deskripsi', 'fungsi',
-        'manfaat', 'fitur_keunggulan', 'harga', 'status'
+        'jurusan_id',
+        'nama',
+        'slug',
+        'deskripsi',
+        'fungsi',
+        'manfaat',
+        'fitur_keunggulan',
+        'harga',
+        'status',
     ];
 
-    // Accessor untuk format harga (misal jadi Rupiah)
-    public function getHargaAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
-
-    // Relasi ke Jurusan
-    public function jurusan()
+    public function jurusan(): BelongsTo
     {
         return $this->belongsTo(Jurusan::class);
     }
 
-    // Relasi ke gambar (diurutkan berdasarkan urutan)
-    public function gambar()
+    public function produkGambars(): HasMany
     {
         return $this->hasMany(ProdukGambar::class)->orderBy('urutan');
     }
 
-    // Relasi ke Lead
-    public function leads()
+    public function leads(): HasMany
     {
         return $this->hasMany(Lead::class);
     }
 
-    // Nanti kita tambahkan Global Scope di sini
-    protected static function booted()
+    protected function hargaFormatted(): Attribute
     {
-        static::addGlobalScope(new JurusanScope);
+        return Attribute::make(
+            get: fn () => 'Rp ' . number_format($this->harga, 0, ',', '.'),
+        );
     }
 }

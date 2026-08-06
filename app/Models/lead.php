@@ -2,32 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Lead extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_id',
         'produk_id',
         'jurusan_id',
         'status',
-        'catatan_admin'
-        ];
+        'catatan_admin',
+    ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function produk()
+    public function produk(): BelongsTo
     {
         return $this->belongsTo(Produk::class);
     }
 
-    public function jurusan()
+    public function jurusan(): BelongsTo
     {
         return $this->belongsTo(Jurusan::class);
     }
