@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\JurusanScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,6 +10,10 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Produk extends Model
 {
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new JurusanScope);
+    }
     protected $fillable = [
         'jurusan_id',
         'nama',
