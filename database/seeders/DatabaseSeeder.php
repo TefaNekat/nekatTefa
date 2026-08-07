@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             JurusanSeeder::class,
             AdminJurusanSeeder::class,
             ProdukSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
