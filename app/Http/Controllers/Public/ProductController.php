@@ -13,17 +13,28 @@ class ProductController extends Controller
     {
         $query = Produk::where('status', 'published')->with('jurusan');
 
-        if($request->filled('jurusan')){
-            $query->whereHas('jurusan', function ($q) use ($request){
+        if ($request->filled('jurusan')) {
+            $query->whereHas('jurusan', function ($q) use ($request) {
                 $q->where('slug', $request->jurusan);
             });
         }
 
-        if($request->filled('q')){
+        if ($request->filled('q')) {
             $query->where('nama', 'like', '%' . $request->q . '%');
-    }
+        }
+
         $produks = $query->latest()->get();
 
         return view('public.product', compact('produks'));
+    }
+
+    public function show(string $slug): View
+    {
+        $produk = Produk::where('slug', $slug)
+            ->where('status', 'published')
+            ->with(['jurusan', 'produkGambars'])
+            ->firstOrFail();
+
+        return view('public.product-detail', compact('produk'));
     }
 }
