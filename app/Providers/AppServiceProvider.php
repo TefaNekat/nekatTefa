@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    // Ditaruh di method boot() karena itu tempat standar buat "menyalakan" hal-hal semacam ini pas aplikasi mulai jalan.
     public function boot(): void
     {
         AdminJurusan::observe(AdminJurusanObserver::class); // pasang Observer ini buat "mendengar" semua kejadian yang terjadi ke Model AdminJurusan

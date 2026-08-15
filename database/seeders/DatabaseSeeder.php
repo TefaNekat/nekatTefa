@@ -9,8 +9,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            RoleSeeder::class,           // HARUS jalan duluan 
             JurusanSeeder::class,
-            AdminJurusanSeeder::class,
+            AdminJurusanSeeder::class,   // Observer otomatis jalan di sini
             ProdukSeeder::class,
             UserSeeder::class,
         ]);
