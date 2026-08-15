@@ -7,10 +7,15 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class AdminJurusan extends Authenticatable implements FilamentUser
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
+
+    protected $guard_name = 'admin'; // Spatie Permission perlu tau role ini "berlaku" di guard yang mana
+
+    // ... sisanya tetap sama (fillable, hidden, casts, jurusan(), isSuperAdmin(), canAccessPanel())
 
     protected $fillable = [
         'jurusan_id',
