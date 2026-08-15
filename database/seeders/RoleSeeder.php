@@ -9,7 +9,7 @@ class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        Role::firstOrCreate([
+        Role::firstOrCreate([ // mencegah error kalau Seeder ini nggak sengaja dijalankan 2 kali.
             'name' => 'super_admin_web',
             'guard_name' => 'admin',
         ]);
