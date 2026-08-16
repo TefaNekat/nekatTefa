@@ -39,9 +39,9 @@ class ProdukResource extends Resource
             TextInput::make('nama')
                 ->required()
                 ->maxLength(255)
-                ->live(onBlur: true)
+                ->live(onBlur: true) // ini bikin slug otomatis ke-generate dari nama produk begitu kamu selesai ngetik
                 ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
-                // auto-generate slug dari nama
+                // auto-generate slug dari nama, jadi Admin Jurusan nggak perlu mikirin bikin slug manual.
 
             TextInput::make('slug')
                 ->required()
@@ -53,6 +53,7 @@ class ProdukResource extends Resource
             Textarea::make('fungsi')->required()->columnSpanFull(),
             Textarea::make('manfaat')->required()->columnSpanFull(),
             Textarea::make('fitur_keunggulan')->required()->columnSpanFull(),
+                   // columnSpanFull() = field ini makan lebar penuh form
 
             TextInput::make('harga')
                 ->required()
@@ -60,9 +61,13 @@ class ProdukResource extends Resource
                 ->prefix('Rp'),
 
             Select::make('status')
-                ->options(['draft' => 'Draft', 'published' => 'Published'])
+                ->options([ // Dropdown pilihan, 'draft'/'published' itu NILAI yang disimpan ke database
+                    'draft' => 'Draft',
+                    'published' => 'Published'
+                ])
                 ->required()
-                ->default('published'),
+                ->default('published'), 
+                // Sesuai keputusan scope: produk langsung live by default
         ]);
     }
 
@@ -81,15 +86,18 @@ class ProdukResource extends Resource
             ->actions([
                 \Filament\Tables\Actions\EditAction::make(),
                 \Filament\Tables\Actions\DeleteAction::make(),
+                 // Ini yang bikin muncul tombol "Edit" dan "Delete" di tiap baris tabel
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProduks::route('/'),
-            'create' => Pages\CreateProduk::route('/create'),
+            'index' => Pages\ListProduks::route('/'), // Halaman daftar, di /admin/produks
+            'create' => Pages\CreateProduk::route('/create'), // Halaman tambah baru, di /admin/produks/create
             'edit' => Pages\EditProduk::route('/{record}/edit'),
+            // Halaman edit, di /admin/produks/{id}/edit
+            // {record} otomatis "ketangkep" jadi produk mana yang lagi diedit
         ];
     }
 }
