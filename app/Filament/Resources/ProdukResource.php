@@ -100,4 +100,11 @@ class ProdukResource extends Resource
             // {record} otomatis "ketangkep" jadi produk mana yang lagi diedit
         ];
     }
+
+    public static function getRelations(): array
+    {
+        return [
+            \App\Filament\Resources\ProdukResource\RelationManagers\ProdukGambarsRelationManager::class,
+        ];
+    }
 }
