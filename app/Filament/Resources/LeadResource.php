@@ -28,6 +28,8 @@ class LeadResource extends Resource
                     'sudah_dihubungi' => 'Sudah Dihubungi',
                     'closing' => 'Closing',
                     'batal' => 'Batal',
+                    // 4 status yang kita definisikan di migration leads
+                    // (baru_masuk, sudah_dihubungi, closing, batal)
                 ])
                 ->required(),
 
@@ -47,8 +49,10 @@ class LeadResource extends Resource
                 TextColumn::make('produk.nama')->label('Produk')->searchable(),
                 TextColumn::make('status')->badge(),
                 TextColumn::make('created_at')->label('Waktu Klik')->dateTime('d M Y, H:i')->sortable(),
+                // nampilin nama, email, dan nomor HP customer di tabel 
+                // data ini yang penting buat admin follow up.
             ])
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('created_at', 'desc') // lead yang paling baru masuk muncul di paling atas
             ->filters([])
             ->actions([
                 \Filament\Tables\Actions\EditAction::make(),
@@ -61,5 +65,6 @@ class LeadResource extends Resource
             'index' => Pages\ListLeads::route('/'),
             'edit' => Pages\EditLead::route('/{record}/edit'),
         ];
+        // Lead tercipta otomatis lewat LeadController@store pas customer klik "Hubungi Admin".
     }
 }
