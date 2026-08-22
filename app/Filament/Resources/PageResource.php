@@ -35,7 +35,7 @@ class PageResource extends Resource
                     ->unique(ignoreRecord: true)
                     ->maxLength(255)
                     ->helperText('Contoh: home, contact (jangan pakai spasi)'),
-                Forms\Components\RichEditor::make('konten')
+                Forms\Components\RichEditor::make('konten') // Ini bikin teks editor keren mirip Microsoft Word
                     ->required()
                     ->columnSpanFull()
                     ->toolbarButtons([
@@ -57,6 +57,7 @@ class PageResource extends Resource
                     ->label('Terakhir Diubah')
                     ->dateTime('d M Y, H:i')
                     ->sortable(),
+                // tampilkan Judul, Slug, dan kapan terakhir diubah supaya tidak terlalu penuh.
             ])
             ->filters([
                 //
