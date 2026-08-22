@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\AdminJurusan;
 use App\Observers\AdminJurusanObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,5 +18,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         AdminJurusan::observe(AdminJurusanObserver::class); // pasang Observer ini buat "mendengar" semua kejadian yang terjadi ke Model AdminJurusan
+
+        // KUNCI MASTER: Jika yang login punya role 'super_admin', langsung izinkan SEMUA fitur
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('super_admin') ? true : null;
+        });
     }
 }
