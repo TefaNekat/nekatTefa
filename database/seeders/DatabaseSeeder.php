@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             AdminJurusanSeeder::class,   // Observer otomatis jalan di sini
             ProdukSeeder::class,
             UserSeeder::class,
+            PageSeeder::class,
         ]);
     }
 }
