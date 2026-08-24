@@ -5,5 +5,4 @@ return [
     App\Providers\AuthServiceProvider::class,
     App\Providers\Filament\AdminPanelProvider::class,
     App\Providers\VoltServiceProvider::class,
-    App\Providers\AuthServiceProvider::class,
 ];

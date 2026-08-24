@@ -19,9 +19,9 @@ class AppServiceProvider extends ServiceProvider
     {
         AdminJurusan::observe(AdminJurusanObserver::class); // pasang Observer ini buat "mendengar" semua kejadian yang terjadi ke Model AdminJurusan
 
-        // KUNCI MASTER: Jika yang login punya role 'super_admin', langsung izinkan SEMUA fitur
+        // KUNCI MASTER: Jika yang login punya role Shield super_admin_web, langsung izinkan semua fitur.
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('super_admin') ? true : null;
+            return $user->hasRole('super_admin_web') ? true : null;
         });
     }
 }
