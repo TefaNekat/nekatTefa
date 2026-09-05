@@ -39,25 +39,29 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <div class="mb-7">
+        <h1 class="font-display text-2xl font-bold text-[var(--color-neutral-900)]">Buat akun customer</h1>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-neutral-500)]">Daftar untuk menghubungi admin dan mendapatkan informasi produk.</p>
+    </div>
     <form wire:submit="register">
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
+            <x-input-label for="name" :value="__('Name')" class="text-sm font-semibold text-[var(--color-neutral-700)]" />
+            <x-text-input wire:model="name" id="name" class="mt-2 block h-10 w-full rounded-lg border-[var(--color-neutral-200)] text-sm focus:border-[var(--color-primary-500)] focus:ring-[var(--color-primary-500)]" type="text" name="name" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" />
+            <x-input-label for="email" :value="__('Email')" class="text-sm font-semibold text-[var(--color-neutral-700)]" />
+            <x-text-input wire:model="email" id="email" class="mt-2 block h-10 w-full rounded-lg border-[var(--color-neutral-200)] text-sm focus:border-[var(--color-primary-500)] focus:ring-[var(--color-primary-500)]" type="email" name="email" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Phone -->
         <div class="mt-4">
-            <x-input-label for="phone" :value="__('Nomor WhatsApp')" />
-            <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="tel" name="phone" required autocomplete="tel" placeholder="081234567890" />
+            <x-input-label for="phone" :value="__('Nomor WhatsApp')" class="text-sm font-semibold text-[var(--color-neutral-700)]" />
+            <x-text-input wire:model="phone" id="phone" class="mt-2 block h-10 w-full rounded-lg border-[var(--color-neutral-200)] text-sm focus:border-[var(--color-primary-500)] focus:ring-[var(--color-primary-500)]" type="tel" name="phone" required autocomplete="tel" placeholder="081234567890" />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
@@ -65,9 +69,9 @@ new #[Layout('layouts.guest')] class extends Component
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password')" class="text-sm font-semibold text-[var(--color-neutral-700)]" />
 
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
+            <x-text-input wire:model="password" id="password" class="mt-2 block h-10 w-full rounded-lg border-[var(--color-neutral-200)] text-sm focus:border-[var(--color-primary-500)] focus:ring-[var(--color-primary-500)]"
                             type="password"
                             name="password"
                             required autocomplete="new-password" />
@@ -77,9 +81,9 @@ new #[Layout('layouts.guest')] class extends Component
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="text-sm font-semibold text-[var(--color-neutral-700)]" />
 
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
+            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="mt-2 block h-10 w-full rounded-lg border-[var(--color-neutral-200)] text-sm focus:border-[var(--color-primary-500)] focus:ring-[var(--color-primary-500)]"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" />
 
@@ -91,7 +95,7 @@ new #[Layout('layouts.guest')] class extends Component
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4 rounded-lg bg-[var(--color-primary-500)] px-4 py-2.5 text-xs font-bold hover:bg-[var(--color-primary-600)] focus:ring-[var(--color-primary-500)]">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
