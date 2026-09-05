@@ -28,7 +28,7 @@
     <section class="site-container py-20">
         <x-section-heading eyebrow="Bidang Keahlian" title="Satu ekosistem, banyak kemungkinan." description="Temukan kompetensi dan karya dari jurusan-jurusan yang bergerak bersama dalam Teaching Factory." />
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            @forelse ($jurusans as $jurusan)
+            @forelse ($jurusans->reject(fn ($jurusan) => in_array($jurusan->slug, ['akuntansi', 'boga', 'tataboga'], true)) as $jurusan)
                 <x-department-card :jurusan="$jurusan" />
             @empty
                 <p class="text-sm text-[var(--color-neutral-500)]">Data jurusan belum tersedia.</p>

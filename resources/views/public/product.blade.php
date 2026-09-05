@@ -10,7 +10,7 @@
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('product.index') }}" class="rounded-full px-4 py-2 text-xs font-bold {{ !request('jurusan') ? 'bg-[var(--color-primary-600)] text-white' : 'bg-white text-[var(--color-neutral-700)] ring-1 ring-[var(--color-neutral-200)]' }}">Semua</a>
-                @foreach (['elektronika' => 'Elektro', 'mesin' => 'Mesin', 'otomotif' => 'TKR', 'tekstil' => 'Tekstil', 'tjkt' => 'TKJ', 'rpl' => 'RPL', 'bp' => 'BP'] as $slug => $label)
+                @foreach (['rpl' => 'RPL', 'tei' => 'Teknik Elektronika', 'tkr' => 'Otomotif', 'tkj' => 'TJKT', 'mm' => 'Broadcasting & Perfilman', 'mesin' => 'Mesin', 'tekstil' => 'Tekstil', 'dgm' => 'Design Gambar Mesin (DGM)', 'meka' => 'Mekatronika (Meka)'] as $slug => $label)
                     <a href="{{ route('product.index', ['jurusan' => $slug]) }}" class="rounded-full px-4 py-2 text-xs font-bold {{ request('jurusan') === $slug ? 'bg-[var(--color-primary-600)] text-white' : 'bg-white text-[var(--color-neutral-700)] ring-1 ring-[var(--color-neutral-200)]' }}">{{ $label }}</a>
                 @endforeach
             </div>

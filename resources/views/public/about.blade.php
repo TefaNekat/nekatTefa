@@ -8,7 +8,7 @@
     </section>
     <section class="site-container py-20">
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            @forelse ($jurusans as $jurusan)
+            @forelse ($jurusans->reject(fn ($jurusan) => in_array($jurusan->slug, ['akuntansi', 'boga', 'tataboga'], true)) as $jurusan)
                 <x-department-card :jurusan="$jurusan" />
             @empty
                 <p class="text-sm text-[var(--color-neutral-500)]">Data jurusan belum tersedia.</p>

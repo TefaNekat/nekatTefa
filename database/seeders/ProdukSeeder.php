@@ -24,24 +24,32 @@ class ProdukSeeder extends Seeder
             foreach ($namaProdukContoh as $index => $namaProduk) {
                 $namaLengkap = $namaProduk . ' - ' . $jurusan->nama;
 
-                $produk = Produk::create([
-                    'jurusan_id' => $jurusan->id,
-                    'nama' => $namaLengkap,
-                    'slug' => Str::slug($namaLengkap),
-                    'deskripsi' => 'Ini adalah deskripsi contoh untuk ' . $namaLengkap . '.',
-                    'fungsi' => 'Fungsi utama produk ini adalah sebagai contoh data dummy.',
-                    'manfaat' => 'Manfaat produk ini untuk keperluan testing dan development.',
-                    'fitur_keunggulan' => 'Fitur unggulan: kualitas terjamin, harga terjangkau.',
-                    'harga' => rand(50, 500) * 1000,
-                    'status' => 'published',
-                ]);
+                $produk = Produk::updateOrCreate(
+                    [
+                        'jurusan_id' => $jurusan->id,
+                        'nama' => $namaLengkap,
+                    ],
+                    [
+                        'slug' => Str::slug($namaLengkap),
+                        'deskripsi' => 'Ini adalah deskripsi contoh untuk ' . $namaLengkap . '.',
+                        'fungsi' => 'Fungsi utama produk ini adalah sebagai contoh data dummy.',
+                        'manfaat' => 'Manfaat produk ini untuk keperluan testing dan development.',
+                        'fitur_keunggulan' => 'Fitur unggulan: kualitas terjamin, harga terjangkau.',
+                        'harga' => (50 + ($index * 100)) * 1000,
+                        'status' => 'published',
+                    ],
+                );
 
                 for ($i = 1; $i <= 3; $i++) {
-                    ProdukGambar::create([
-                        'produk_id' => $produk->id,
-                        'path_gambar' => 'produk/dummy-' . $i . '.jpg',
-                        'urutan' => $i,
-                    ]);
+                    ProdukGambar::updateOrCreate(
+                        [
+                            'produk_id' => $produk->id,
+                            'urutan' => $i,
+                        ],
+                        [
+                            'path_gambar' => 'produk/dummy-' . $i . '.jpg',
+                        ],
+                    );
                 }
             }
         }
