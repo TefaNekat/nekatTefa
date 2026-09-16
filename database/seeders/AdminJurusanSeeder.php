@@ -17,7 +17,7 @@ class AdminJurusanSeeder extends Seeder
             [
                 'jurusan_id' => null,
                 'name' => 'Super Admin Web',
-                'password' => Hash::make('admin'),
+                'password' => Hash::make('password'),
                 'role' => 'super_admin',
             ],
         );

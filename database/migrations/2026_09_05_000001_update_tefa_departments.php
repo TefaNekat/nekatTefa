@@ -22,8 +22,8 @@ return new class extends Migration
         $departments = [
             ['nama' => 'Mesin', 'slug' => 'mesin', 'deskripsi' => 'Fokus pada proses manufaktur dan teknologi mesin.', 'nomor_wa' => '081234567897'],
             ['nama' => 'Tekstil', 'slug' => 'tekstil', 'deskripsi' => 'Fokus pada proses produksi dan pengembangan produk tekstil.', 'nomor_wa' => '081234567898'],
-            ['nama' => 'Design Gambar Mesin (DGM)', 'slug' => 'dgm', 'deskripsi' => 'Fokus pada gambar teknik dan perancangan mesin.', 'nomor_wa' => '081234567899'],
-            ['nama' => 'Mekatronika (Meka)', 'slug' => 'meka', 'deskripsi' => 'Fokus pada integrasi mekanik, elektronika, dan otomasi.', 'nomor_wa' => '081234567800'],
+            ['nama' => 'Design Gambar Mesin', 'slug' => 'dgm', 'deskripsi' => 'Fokus pada gambar teknik dan perancangan mesin.', 'nomor_wa' => '081234567899'],
+            ['nama' => 'Mekatronika', 'slug' => 'meka', 'deskripsi' => 'Fokus pada integrasi mekanik, elektronika, dan otomasi.', 'nomor_wa' => '081234567800'],
         ];
 
         foreach ($departments as $department) {
