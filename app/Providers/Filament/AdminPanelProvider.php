@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->authGuard('admin')
+            ->brandName('TEFA NEKAT')
             ->colors([
                 'primary' => Color::Amber,
             ])
